@@ -22,7 +22,6 @@ public class WebElementUtils {
         WebElement webElement = null;
         try {
             webElement = new WebDriverWait(driver, 60).until(new ExpectedCondition<WebElement>() {
-                @Override
                 public WebElement apply(WebDriver driver) {
                     return driver.findElement(by);
                 }

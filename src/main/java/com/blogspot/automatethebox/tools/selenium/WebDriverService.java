@@ -4,7 +4,6 @@ import com.google.common.base.Preconditions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import java.io.File;
@@ -39,9 +38,7 @@ public class WebDriverService {
         if (WebDriverService.driver != null) {
             throw new AssertionError("Something is wrong... WebDriver instance is tried to be re-initialized");
         }
-        if (browser.toLowerCase().equals("htmlunit")) {
-            driver = new HtmlUnitDriver();
-        } else if (browser.toLowerCase().equals("firefox")) {
+       if (browser.toLowerCase().equals("firefox")) {
             driver = new FirefoxDriver();
         } else if (browser.toLowerCase().equals("ie")) {
             System.setProperty("webdriver.ie.driver", IE_DRIVER);
@@ -58,7 +55,9 @@ public class WebDriverService {
 
     public static void stopDriver() {
         if (driver != null) {
-            driver.quit();
+//            driver.quit();
+            driver.close();
+            driver = null;
         }
     }
 }

@@ -16,7 +16,7 @@ public abstract class AbstractTest {
 
     @BeforeClass(alwaysRun = true, description = "Start the Browser")
     @Parameters("browser")
-    public void startBrowser(@Optional("firefox") String browser) {
+    public void startBrowser(String browser) {
         driver = WebDriverService.startDriver(browser);
         testSetup();
     }

@@ -15,14 +15,14 @@ public abstract class AbstractAuthenticationTest extends AbstractTest {
     protected HomePage homePage;
 
     @BeforeClass(description = "Facebook Login")
-    @Parameters({"facebook_user_name", "facebook_user_password"})
+    @Parameters({"user_name", "user_password"})
     public void login(String emailOrPhone, String password) {
         LoginPage loginPage = new LoginPageImpl(driver).get();
         homePage = loginPage.loginAs(emailOrPhone, password);
     }
-
-    @AfterClass(description = "Facebook Logout")
-    public void logout() {
-        homePage.logout();
-    }
+//
+//    @AfterClass(description = "Facebook Logout")
+//    public void logout() {
+//        homePage.logout();
+//    }
 }

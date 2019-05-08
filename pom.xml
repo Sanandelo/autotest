@@ -16,7 +16,7 @@
                 <version>2.16</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>bin/testng-facebook.xml</suiteXmlFile>
+                        <suiteXmlFile>testng-facebook.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.44.0</version>
+            <version>3.141.59</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>

@@ -1,7 +1,6 @@
 package com.blogspot.automatethebox.application.facebook.pages;
 
-import com.blogspot.automatethebox.application.facebook.modules.FacebookNavigation;
-import com.blogspot.automatethebox.application.facebook.modules.FacebookNavigationImpl;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,10 +16,19 @@ import static org.testng.Assert.assertEquals;
 public class HomePageImpl extends LoadableComponent<HomePageImpl> implements HomePage {
 
     // Page Elements.
-    @FindBy(id = "navAccountLink")
+    @FindBy(css = ".md-toolbar-section-end .md-menu:first-child button[md-menu-trigger]")
     private WebElement accountButton;
-    @FindBy(id = "logout_form")
-    private WebElement logoutButton;
+
+    @FindBy(css = ".md-toolbar-section-start .md-title")
+    private WebElement titile;
+
+
+    @FindBy(css = ".md-menu-content-container button")
+    private WebElement logoutBtn;
+
+    @FindBy(css = "a[href='#/admin']")
+    private WebElement administrationButton;
+
 
     // WebDriver instance.
     private WebDriver driver;
@@ -41,15 +49,31 @@ public class HomePageImpl extends LoadableComponent<HomePageImpl> implements Hom
         assertEquals(actualTitle, APP_TITLE, "Not on the Facebook Home page.");
     }
 
-    @Override
+    public void closeModal() throws InterruptedException {
+        Thread.sleep(1000);
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+    }
+
     public LoginPage logout() {
         accountButton.click();
-        logoutButton.click();
+        logoutBtn.click();
         return new LoginPageImpl(driver);
     }
 
-    @Override
-    public FacebookNavigation navigateTo() {
-        return new FacebookNavigationImpl(driver);
+    public AdministrationPage navigeteToAdministrationPage(){
+        accountButton.click();
+        administrationButton.click();
+        return new AdministrationPage(driver);
     }
+
+    public String getUserName(){
+
+        return accountButton.getText();
+    }
+
+    public String getTitle(){
+        return titile.getText();
+    }
+
 }
